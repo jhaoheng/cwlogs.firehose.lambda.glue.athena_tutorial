@@ -2,7 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import * as iam from '@aws-cdk/aws-iam';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as path from 'path';
-import * as logs from '@aws-cdk/aws-logs';
+// import * as logs from '@aws-cdk/aws-logs';
 
 export interface SetLambdaProps {
 }
@@ -11,24 +11,28 @@ export class SetLambda extends cdk.Construct {
 
     public readonly MyLambdaFunc: lambda.Function;
     public readonly MyLambdaArn: string;
+    private funcName:string;
 
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id);
         const role = this.set_role();
 
+        this.funcName = `${cdk.Stack.of(this).stackName}_transform_cwlogs`
+
         // lambda
         this.MyLambdaFunc = new lambda.Function(this, 'MyLambda', {
-            functionName: `${cdk.Stack.of(this).stackName}_transform_cwlogs`,
+            functionName: this.funcName,
             runtime: lambda.Runtime.NODEJS_14_X,
             handler: 'index.handler',
             code: lambda.Code.fromAsset(path.join(__dirname + '/../', 'lambda-handler')),
             role: role,
             memorySize: 128,
             timeout: cdk.Duration.seconds(60),
-            logRetention: logs.RetentionDays.ONE_WEEK,
-            logRetentionRole: role,
+            // logRetention: logs.RetentionDays.INFINITE,
+            // logRetentionRole: role,
         });
         this.MyLambdaArn = this.MyLambdaFunc.functionArn
+
     }
 
     //
@@ -50,7 +54,7 @@ export class SetLambda extends cdk.Construct {
                                 "logs:CreateLogStream",
                                 "logs:PutLogEvents",
                             ],
-                            resources: [`arn:aws:logs:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:log-group:/aws/lambda/${cdk.Stack.of(this).stackName}:*`],
+                            resources: [`arn:aws:logs:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:log-group:/aws/lambda/${this.funcName}:*`],
                         }),
                     ],
                 }),

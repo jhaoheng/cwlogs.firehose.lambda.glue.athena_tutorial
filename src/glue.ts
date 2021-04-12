@@ -36,7 +36,7 @@ export class SetGlue extends cdk.Construct {
 
   private set_table(): glue.CfnTable {
     //
-    return new glue.CfnTable(this, `MyGlueTable`, {
+    const myGlueTable = new glue.CfnTable(this, `MyGlueTable`, {
       catalogId: this.glueCatalogId,
       databaseName: this.glueDatabaseName,
       tableInput: {
@@ -78,12 +78,13 @@ export class SetGlue extends cdk.Construct {
         ],
       },
     })
+    return myGlueTable
   }
 
 
   private set_crawler(): glue.CfnCrawler {
-    return new glue.CfnCrawler(this, 'MyGlueCrawler', {
-      name: `${cdk.Stack.of(this).stackName}`,
+    const myCrawler = new glue.CfnCrawler(this, 'MyGlueCrawler', {
+      name: `${cdk.Stack.of(this).stackName}-crawler`,
       databaseName: this.glueDatabaseName,
       role: this.set_role().roleArn,
       targets: {
@@ -102,6 +103,7 @@ export class SetGlue extends cdk.Construct {
       },
       configuration: '{"Version": 1.0, "Grouping": {"TableGroupingPolicy": "CombineCompatibleSchemas"}}',
     });
+    return myCrawler
   }
 
   private set_role(): iam.Role {

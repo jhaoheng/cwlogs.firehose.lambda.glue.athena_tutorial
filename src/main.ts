@@ -6,6 +6,8 @@ import { SetLogDestination } from './logDestination'
 import { SetGlue } from './glue'
 import { SetLambda } from './lambda'
 
+const LogsFilterPattern = "ERROR"
+
 export class MyStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props: cdk.StackProps = {}) {
     super(scope, id, props);
@@ -37,9 +39,16 @@ export class MyStack extends cdk.Stack {
     })
 
 
+    // glue
+    new SetGlue(this, `MyGlueStack`, {
+      S3BucketOfSource: myS3Stack.s3bucket,
+      S3PrefixOfSource: myFirehoseStack.S3Prefix,
+    })
+
+    
     // logs
     const myLog = new logs.LogGroup(this, 'MyLogGroup', {
-      logGroupName: `${cdk.Stack.of(this).stackName}_logs`,
+      logGroupName: `/aws/${cdk.Stack.of(this).stackName}/logs`,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       retention: logs.RetentionDays.ONE_WEEK,
     });
@@ -64,15 +73,10 @@ export class MyStack extends cdk.Stack {
     // logs put subscription filter
     myLog.addSubscriptionFilter(`MySubscriptionFilter`, {
       destination: logDestinationStack,
-      filterPattern: logs.FilterPattern.allTerms("ERROR"),
+      filterPattern: logs.FilterPattern.allTerms(LogsFilterPattern),
     })
 
 
-    // glue
-    new SetGlue(this, `MyGlueStack`, {
-      S3BucketOfSource: myS3Stack.s3bucket,
-      S3PrefixOfSource: myFirehoseStack.S3Prefix,
-    })
   }
 }
 

@@ -14,14 +14,13 @@ export class SetS3 extends cdk.Construct {
     this.s3bucket = new s3.Bucket(this, 'MyBucket', {
       bucketName: `${cdk.Stack.of(this).stackName}-${cdk.Stack.of(this).account}`,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
+      autoDeleteObjects: false,
       lifecycleRules: [
         {
           id: "expired_after_365_days",
           expiration: cdk.Duration.days(365),
         },
       ],
-
     });
   }
 }
