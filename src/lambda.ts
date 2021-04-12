@@ -2,7 +2,6 @@ import * as cdk from '@aws-cdk/core';
 import * as iam from '@aws-cdk/aws-iam';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as path from 'path';
-// import * as logs from '@aws-cdk/aws-logs';
 
 export interface SetLambdaProps {
 }
@@ -15,10 +14,10 @@ export class SetLambda extends cdk.Construct {
 
     constructor(scope: cdk.Construct, id: string) {
         super(scope, id);
+        this.funcName = `${cdk.Stack.of(this).stackName}_firehose_transform`
+        
+        //
         const role = this.set_role();
-
-        this.funcName = `${cdk.Stack.of(this).stackName}_transform_cwlogs`
-
         // lambda
         this.MyLambdaFunc = new lambda.Function(this, 'MyLambda', {
             functionName: this.funcName,
@@ -28,11 +27,8 @@ export class SetLambda extends cdk.Construct {
             role: role,
             memorySize: 128,
             timeout: cdk.Duration.seconds(60),
-            // logRetention: logs.RetentionDays.INFINITE,
-            // logRetentionRole: role,
         });
         this.MyLambdaArn = this.MyLambdaFunc.functionArn
-
     }
 
     //
@@ -45,16 +41,9 @@ export class SetLambda extends cdk.Construct {
                     statements: [
                         new iam.PolicyStatement({
                             actions: [
-                                "logs:CreateLogGroup",
+                                "logs:*",
                             ],
-                            resources: [`arn:aws:logs:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:*`],
-                        }),
-                        new iam.PolicyStatement({
-                            actions: [
-                                "logs:CreateLogStream",
-                                "logs:PutLogEvents",
-                            ],
-                            resources: [`arn:aws:logs:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:log-group:/aws/lambda/${this.funcName}:*`],
+                            resources: [`arn:aws:logs:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:log-group:*:*`],
                         }),
                     ],
                 }),
