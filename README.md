@@ -30,10 +30,10 @@
 
 ## 3. Athena, to check the Glue table partition
 
-1. Athena query : `MSCK REPAIR TABLE analysis_layer_1;`
+1. Athena query : `MSCK REPAIR TABLE rawdata;`
 2. If fine, should get `Query successful.` response.
     - Jump to STEP_5
-3. If Not, will get like `Partitions not in metastore:	analysis_layer_1:2021/04/12/03`
+3. If Not, will get like `Partitions not in metastore:	rawdata:2021/04/12/03`
     - Go to STEP_4 to update the partition.
 
 ![step_3](./asserts/step_3.png)
@@ -47,7 +47,7 @@
 
 ## 5. Athena, exec query, to get data from Glue table 
 
-1. Athena query : `SELECT * FROM "analysis_database"."analysis_layer_1" limit 10;`
+1. Athena query : `SELECT * FROM "analysis_database"."rawdata" limit 10;`
 2. If you find the empty value, go to STEP_3 to check the partitions.
 
 ![step_5](./asserts/step_5.png)
