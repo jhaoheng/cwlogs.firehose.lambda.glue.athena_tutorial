@@ -6,7 +6,7 @@ import { SetLogDestination } from './logDestination'
 import { SetGlue } from './glue'
 import { SetLambda } from './lambda'
 
-const LogsFilterPattern = "ERROR"
+const LogsFilterPattern = " " // Match everything
 
 export class MyStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props: cdk.StackProps = {}) {

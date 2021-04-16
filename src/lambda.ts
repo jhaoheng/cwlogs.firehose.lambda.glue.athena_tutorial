@@ -21,9 +21,9 @@ export class SetLambda extends cdk.Construct {
         // lambda
         this.MyLambdaFunc = new lambda.Function(this, 'MyLambda', {
             functionName: this.funcName,
-            runtime: lambda.Runtime.NODEJS_14_X,
+            runtime: lambda.Runtime.PYTHON_3_8,
             handler: 'index.handler',
-            code: lambda.Code.fromAsset(path.join(__dirname + '/../', 'lambda-handler')),
+            code: lambda.Code.fromAsset(path.join(__dirname + '/../', 'lambda-handler/py')),
             role: role,
             memorySize: 128,
             timeout: cdk.Duration.seconds(60),

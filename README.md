@@ -6,6 +6,9 @@
 ## CMD
 - `cdk deploy`
 
+# Firehose, Transform source records with AWS Lambda
+- You transform each log event within Lambda func.
+
 # Operation Flow
 
 ## 1. Put log event to CWLogs
