@@ -26,7 +26,7 @@ export class SetGlue extends cdk.Construct {
     this.s3location = `s3://${props.S3BucketOfSource.bucketName}/${props.S3PrefixOfSource}`
     this.glueCatalogId = myGlueDatabase.catalogId
     this.glueDatabaseName = myGlueDatabase.databaseName
-    this.glueTableName = `${cdk.Stack.of(this).stackName}_layer_1`
+    this.glueTableName = `rawdata`
 
     //
     const glue_table = this.set_table()
