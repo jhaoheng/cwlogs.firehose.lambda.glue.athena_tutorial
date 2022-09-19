@@ -135,13 +135,23 @@
     "@aws-cdk/core" "1.97.0"
     constructs "^3.3.69"
 
-"@aws-cdk/aws-iam@1.97.0", "@aws-cdk/aws-iam@^1.97.0":
+"@aws-cdk/aws-iam@1.97.0":
   version "1.97.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-1.97.0.tgz#8ac9a5a6c707a2d8129593b3381db19561754aab"
   integrity sha512-WV+1T5Payi3QR8uoEQRgeOVK9zP0cJ2KNRr2Y5Sa6oEMPTaZZxxX2zJ+pkGf9DdNmEChMSarHRMXJ1a3AHGjQg==
   dependencies:
     "@aws-cdk/core" "1.97.0"
     "@aws-cdk/region-info" "1.97.0"
+    constructs "^3.3.69"
+
+"@aws-cdk/aws-iam@^1.97.0":
+  version "1.173.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-1.173.0.tgz#59cf33cdc25b28c4281e25bddb32d235aea177bf"
+  integrity sha512-y2UUhBPcTpDWLdM9NssU0zZ1PbsSTVaLhcgbQf1D2RcQjkbX+ZQiqVdQxw9/jVCCvlgm1Nuxu7fyUB/ecPgQPQ==
+  dependencies:
+    "@aws-cdk/core" "1.173.0"
+    "@aws-cdk/cx-api" "1.173.0"
+    "@aws-cdk/region-info" "1.173.0"
     constructs "^3.3.69"
 
 "@aws-cdk/aws-kinesisfirehose@^1.97.0":
@@ -260,10 +270,10 @@
   dependencies:
     md5 "^2.3.0"
 
-"@aws-cdk/cloud-assembly-schema@1.162.0":
-  version "1.162.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/cloud-assembly-schema/-/cloud-assembly-schema-1.162.0.tgz#12bd4de8489cd59790cc67aa7831f1ded635431e"
-  integrity sha512-ot7QsCjKEB742ej5K/oQwoo7qRC5kVHgSFtjF5KkK57w5rFAsTel+zQh6uADZOH7LP8x5JJb9xYN4qJK/GUCzg==
+"@aws-cdk/cloud-assembly-schema@1.173.0":
+  version "1.173.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/cloud-assembly-schema/-/cloud-assembly-schema-1.173.0.tgz#81eed85f37d5dd513227298153a3dd1d03cc9ac1"
+  integrity sha512-02RvAHje9jlOD+cfrqGrK3baoHvmUdcrIFz576xDn6oKhm97xcwWxyzGUJqEBAokgNOpmeMz2Nu+MLR32iujrg==
   dependencies:
     jsonschema "^1.4.1"
     semver "^7.3.7"
@@ -288,6 +298,20 @@
     string-width "^4.2.2"
     table "^6.0.9"
 
+"@aws-cdk/core@1.173.0", "@aws-cdk/core@^1.97.0":
+  version "1.173.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.173.0.tgz#c3e3db3730aa44cfcd4ef0af4c970a485d903c1d"
+  integrity sha512-BV0vIOnjUxWqElXaCB9uhpZSwKbVXKsCyX3f7zhTrutP07j6dFURBaPipEK47LiSUha/VDx5MMrUIw3Z6NXxZA==
+  dependencies:
+    "@aws-cdk/cloud-assembly-schema" "1.173.0"
+    "@aws-cdk/cx-api" "1.173.0"
+    "@aws-cdk/region-info" "1.173.0"
+    "@balena/dockerignore" "^1.0.2"
+    constructs "^3.3.69"
+    fs-extra "^9.1.0"
+    ignore "^5.2.0"
+    minimatch "^3.1.2"
+
 "@aws-cdk/core@1.97.0":
   version "1.97.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.97.0.tgz#421702aad95b925c63af2f1210835a87a330db00"
@@ -302,26 +326,12 @@
     ignore "^5.1.8"
     minimatch "^3.0.4"
 
-"@aws-cdk/core@^1.97.0":
-  version "1.162.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.162.0.tgz#20d8b89da8fbf6558b710ac3028fede8f09706dd"
-  integrity sha512-7lekwtElujn8vg1akrsfgVt+OM8CdEBf9TnRv2l3WuFhXvRPisdb2pQ0kmydGp+ve+GNoufFhcZ2nyKcd65jkg==
+"@aws-cdk/cx-api@1.173.0":
+  version "1.173.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/cx-api/-/cx-api-1.173.0.tgz#504aab1e468bc2258e88a3b04fdfbf5330db8707"
+  integrity sha512-gg1lKKiZV7ZxFQ6hZ1tpknZkco6q71dFY8FDayAx2bvZ7U4FqEMcmfXzMQkYOV92YGDvSbh6A+bcYWMW0XGPDA==
   dependencies:
-    "@aws-cdk/cloud-assembly-schema" "1.162.0"
-    "@aws-cdk/cx-api" "1.162.0"
-    "@aws-cdk/region-info" "1.162.0"
-    "@balena/dockerignore" "^1.0.2"
-    constructs "^3.3.69"
-    fs-extra "^9.1.0"
-    ignore "^5.2.0"
-    minimatch "^3.1.2"
-
-"@aws-cdk/cx-api@1.162.0":
-  version "1.162.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/cx-api/-/cx-api-1.162.0.tgz#065c7d4f0756c94d651f673520427eaa2a03bf88"
-  integrity sha512-/EKcQjRDBkEcvv0wjbLXbwkwknVOr09OPdDHsbgNuX4is5IbpkbXE5Z6bzE5f2tg5kv3tY4sK98H0SpiKVkU4w==
-  dependencies:
-    "@aws-cdk/cloud-assembly-schema" "1.162.0"
+    "@aws-cdk/cloud-assembly-schema" "1.173.0"
     semver "^7.3.7"
 
 "@aws-cdk/cx-api@1.97.0":
@@ -332,10 +342,10 @@
     "@aws-cdk/cloud-assembly-schema" "1.97.0"
     semver "^7.3.5"
 
-"@aws-cdk/region-info@1.162.0":
-  version "1.162.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/region-info/-/region-info-1.162.0.tgz#236808f561478a2f5a20975831a97d8c34f8399f"
-  integrity sha512-9tNDFzlR0qR7oMW7paSATQ6kr288qHY3JF881YFOySr0J+AySlsePxP64a2Cnlb3V5+Y0ikAEyN7wdRIuYbvnQ==
+"@aws-cdk/region-info@1.173.0":
+  version "1.173.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/region-info/-/region-info-1.173.0.tgz#ba7367eeddbec2d1e49f6f4dd2f7232d5e4164b7"
+  integrity sha512-SVl3i3W915IBvYuRZstxjUtwEX+DZmwkAGSbTMvpD9EdD+8uvH+JH8fgGV21JAVjZPx4Fc+s+J+W76ccIMXIAg==
 
 "@aws-cdk/region-info@1.97.0":
   version "1.97.0"
